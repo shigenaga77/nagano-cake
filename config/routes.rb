@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'genres/index'
+    get 'genres/edit'
+  end
   devise_for :publics
   devise_for :admins
   
@@ -7,6 +11,7 @@ Rails.application.routes.draw do
   
   namespace :admin do
     resources :items
+    resources :genres, only: [:index, :create, :edit, :update]
   end
   
   scope module: :public do
